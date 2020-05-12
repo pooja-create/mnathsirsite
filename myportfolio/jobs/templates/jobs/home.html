@@ -1,0 +1,186 @@
+<!doctype html>
+{% load staticfiles %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>Nath sir</title>
+    
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      .response{
+            margin-top: 30px;
+      }
+      .response img{
+           max-width:100%;
+
+      }    
+      .card-text1 {
+        text-align:center;
+        text-transform :uppercase;
+      }
+      .about{
+        text-align: center;
+      }
+
+	p, div {
+    font-family: 'Nobile', Helvetica, Arial, sans-serif;
+      }
+
+	.rounded{
+    border-radius: 50%;
+    } 
+ 
+	.read-more-btn{
+          background-image: linear-gradient(to right,rgb(14, 112, 14),#5c8bef);
+          padding:5px 12px 8px;
+          border-radius:20px;
+          line-height:20px;
+          font-size:14px;
+          color:#fff;
+          border:none!important;
+          }
+    .read-more-btn:hover{
+          background-image: linear-gradient(to right,#1c03b5,#5c8bef);
+         
+          }
+    .title{
+        text-transform :uppercase;
+        color: rgb(14, 112, 14);
+              }
+              
+    .dropdown {
+        border:2px solid red;
+
+			}
+	.dropdown-content{
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	padding: 12px 16px;
+	z-index: 1;
+	}
+	.dropdown:hover .dropdown-content {
+	display: block;
+	}
+     
+    
+    
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="album.css" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+  
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="navbar-brand" href="#">Nath Sir<img src="{% static 'whats.jpg' %}" height="30px" width="60px"><small>9210340580</small>&nbsp;&nbsp;<img src="{% static '1.png' %}" height="22px" width="32px"><small>&nbsp;&nbsp;mnath.snt@gmail.com</small></div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ml-auto">
+        <a class="nav-item nav-link active" href="">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" href="/blog/">Blog</a>
+        <a class="nav-item nav-link" href="{% static '' %}">Resource</a>
+        <a class="nav-item nav-link" href="/development/">Project</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main role="main">
+
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">Hi ! I'm Mahendra Nath</h1>
+    
+      <div class="response"><img src="{% static 'capture.png' %}"></img></div>
+     
+      <div class="about">
+      
+      <div><b>CMD</b> SNT Super Net Technologies Pvt Ltd</div>
+      <div><b>Founder</b> Real My Score(RMS)</div>
+      <div><b>CoFounder</b> Round Table Classes</div>
+      <div><b>Technical Consultant</b> UniGlare (Home appliances)Co.</div>
+      <div><b>Corporate Trainer </b>Python,Android,Java,.Net,Microsoft,Linux,SPSS,R,Tablu,Arduino and Respberry,AWS,Google Cloud,Angular Js,Node Js<br><b>Research &Development</b>(Home Automation,Job Automation,Machine Learning,DataScience,Data Analysis & Reporting)</div>
+      <br><br><br>
+      <div><img src="{% static 'im.jpg' %}" height="250px" width="100%"></div>
+      <div>
+          <form method="POST">{% csrf_token %}
+             <select name="dropdown" class="dropdown">
+              <option selected="selected" disabled >Select Your Course</option>
+              <option value="ALL" >ALL</option>
+                {% for s in search.all %}
+                   <div class="dropdown-content"><option value="{{ s.id }}">{{ s.category }}</option></div>
+              
+                {% endfor %}
+              
+              </select>
+              <input type="submit" value="select">
+            </form>
+            
+        </div>
+    </div>
+  </section>
+<div class="album py-5 bg-light">
+    <div class="container">
+    <div class="row">
+        {% for job in jobs.all %}
+        
+        
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-text1"><b><a href="{{ job.pk }}" class="title">{{ job.title }}</a></b></div>
+            <hr>
+            <div class="bd-placeholder-img card-img-top"><a href="{{ job.pk }}" class="title"><img src={{ job.image.url }} border="5" width="100%" height="150px"></a></div>
+            
+            <div class="card-body">
+              <p class="card-text">{{ job.summary1 }}<a href="{{ job.pk }}" class="read-more-btn">Read More</a></p>
+            </div>
+          </div>
+
+        </div>
+        
+        {% endfor %}
+     </div>
+        
+  </div>
+
+</main>
+
+<footer class="text-muted">
+  <div class="container text-center">
+    <p>&copy Nath sir {%now "Y"%} </p>
+  </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    </body>
+</html>
